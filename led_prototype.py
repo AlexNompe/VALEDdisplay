@@ -47,7 +47,7 @@ pin_map = {
 # Maximum number of GPIO PINS to use as encoded ADDRESSES for controlling LEDS.
 # Note: Two additional PINS are required for writing data to the LED panel.
 # The configuration is calculated based on factorial combinations of these PINS.
-max_pins = 6
+max_pins = 24
 
 # After this bit of code the best_pin_options dictionary contains 3 values:
 # ["min_pins"] is a minimum number of PINS to properly display your image.
@@ -117,8 +117,8 @@ comb = []
 
 
 def generate_combinations(pins, best_pin_options):
-    # We generate all the possible PIN combinations that can be used as an ADDRESS for any single LED.
-    # Stop generating once the number of needed pixels is reached.
+    # Generate all possible PIN combinations for addressing any single LED,
+    # and stop once the number of required pixels is reached.
     global comb
     if not comb:
         needed_pixels = 0
@@ -132,7 +132,8 @@ def generate_combinations(pins, best_pin_options):
 
 def set_led_at(xy, signal, no_comments=False):
     # Toggle the appropriate PIN to address the LED at position [xy],
-    # Set the WRITING PIN to HIGH, change the DATA PIN according to the signal (ON/OFF), then set the WRITING PIN to LOW.
+    # Set the WRITING PIN to HIGH to start writing, adjust the DATA PIN according to the signal (ON/OFF),
+    # then set the WRITING PIN to LOW to complete writing.
     global pins, comb, write_pin, best_pin_options
 
     if xy[0] <= led_map.width - 1 and xy[1] <= led_map.height - 1:
@@ -155,8 +156,8 @@ def set_led_at(xy, signal, no_comments=False):
 
 
 def clear_led_map(no_comments=False):
-    # Clear the LED map by setting all ADDRESS PINS to HIGH, setting the WRITING PIN to HIGH,
-    # setting the DATA PIN to LOW, and then setting the WRITING PIN to LOW.
+    # Clear the LED map by turning off all LEDs. Set all ADDRESS PINS to HIGH, set the WRITING PIN to HIGH,
+    # set the DATA PIN to LOW, and then set the WRITING PIN to LOW.
     global pins
 
     if not no_comments:
@@ -198,14 +199,14 @@ def redraw_led_map(no_comments=False):
 
 # AS FOR OUR ACTUAL ALGORITHM.
 # First, we draw the map.
-draw_led_map()
+redraw_led_map()
 
 # After, measure how many times the LED map can be drawn in one second to calculate the refresh rate.
 timing_start = timeit.default_timer()
 timing_end = timing_start
 fps = 0
 while (timing_end := timeit.default_timer()) - timing_start < 1:
-    draw_led_map(True)
+    redraw_led_map(True)
     fps += 1
 
 # Calculate the refresh rate in Hz, rounding to two decimal places if needed for more precision.
