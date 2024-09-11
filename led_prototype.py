@@ -11,9 +11,9 @@ from PIL import Image
 # The image to display on the LED panel. Only pixels that are pure white (#FFFFFF) will turn ON the corresponding LEDs.
 led_map = Image.open("led_map.png").convert("RGB")
 
-# GPIO PIN on a microcontroller may be arranged and labeled inconsistently.
+# GPIO PINS on a microcontroller may be arranged and labeled inconsistently.
 # This dictionary remaps the PIN indexes to the actual physical GPIO PINS.
-# (In this case, PIN index +2 is used, but feel free to customize the mapping for your setup.)
+# (In this case, PIN index +2 is used, but feel free to customize the mapping for your setup).
 pin_map = {
     0: 2,
     1: 3,
@@ -65,7 +65,7 @@ for enc_pins in range(max_pins):
         for x in range(enc_pins):
             combinations *= min_pins - x
         pixels = int(combinations / fac)
-        # We check if the max amount of [pixels] for [min_pins] pins is enough to store our image,
+        # We check if the max amount of [pixels] for [min_pins] PINS is enough to store our image,
         # and if the result is better that the previous best, write it down to the [best_pin_options].
         if pixels >= led_map.width * led_map.height:
             if min_pins < best_pin_options["min_pins"]:
@@ -82,7 +82,7 @@ for enc_pins in range(max_pins):
 # (Saved up for later to be printed out the second time in case python console overflows with instructions).
 starting_message = ""
 
-# Check if the number of available max_pins can support the image and print the result.
+# Check if the number of available [max_pixels] can support the image and print the result.
 if best_pin_options["max_pixels"] >= led_map.width * led_map.height:
     pins = [pin_map[i] for i in range(best_pin_options["min_pins"])]
     starting_message = f"{best_pin_options["min_pins"]}+2 PINS is use, {led_map.width * led_map.height}/{best_pin_options["max_pixels"]} pixels."
