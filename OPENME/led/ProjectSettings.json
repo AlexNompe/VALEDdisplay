@@ -1,0 +1,26 @@
+{
+  "ProjectName": "led",
+  "BuildVersion": "1.0.2",
+  "CreationTime": "2024-09-11T14:52:11.8543293+03:00",
+  "AllCreatedChips": [
+    "LED CONTROLLER",
+    "ADRESS CHECK",
+    "SAVE",
+    "OR",
+    "NOR"
+  ],
+  "StarredChips": [
+    "AND",
+    "NOT",
+    "LED CONTROLLER",
+    "ADRESS CHECK",
+    "SAVE",
+    "OR",
+    "NOR"
+  ],
+  "DisplayOptions": {
+    "MainChipPinNameDisplayMode": 0,
+    "SubChipPinNameDisplayMode": 1,
+    "ShowCursorGuide": 0
+  }
+}

@@ -1,0 +1,3 @@
+This folder contains Digital Logic Sim projects!
+
+They go in C:\Users\{USERNAME}\AppData\LocalLow\SebastianLague\Digital Logic Sim\V1\Projects
