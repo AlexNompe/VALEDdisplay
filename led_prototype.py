@@ -149,10 +149,9 @@ def set_led_at(xy, signal, no_comments=False):
             print(f"- PINS {inactive_pins} set", Voltage.OFF)
             print(f"- PIN {write_pin} set", Voltage.ON, "(Writing start)")
             print(f"- PIN {data_pin} set", signal, "(Written data)")
+            print(f"- PIN {write_pin} set", Voltage.OFF, "(Writing end)")
     else:
         raise IndexError("ERROR!!! Coordinate not on the LED map!!!")
-    if not no_comments:
-        print(f"- PIN {write_pin} set", Voltage.OFF, "(Writing end)")
 
 
 def clear_led_map(no_comments=False):
