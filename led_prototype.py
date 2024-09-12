@@ -178,7 +178,7 @@ def draw_led_map(no_comments=False):
 
     for y in range(led_map.height):
         for x in range(led_map.width):
-            if led_map.getpixel([x, y]) == (255, 255, 255, 255):
+            if led_map.getpixel([x, y]) == (255, 255, 255):
                 set_led_at([x, y], Voltage.ON, no_comments)
 
 
@@ -199,14 +199,16 @@ def redraw_led_map(no_comments=False):
 
 # AS FOR OUR ACTUAL ALGORITHM.
 # First, we draw the map.
-redraw_led_map()
+clear_led_map()
+draw_led_map()
 
 # After, measure how many times the LED map can be drawn in one second to calculate the refresh rate.
 timing_start = timeit.default_timer()
 timing_end = timing_start
 fps = 0
 while (timing_end := timeit.default_timer()) - timing_start < 1:
-    redraw_led_map(True)
+    clear_led_map(True)
+    draw_led_map(True)
     fps += 1
 
 # Calculate the refresh rate in Hz, rounding to two decimal places if needed for more precision.
